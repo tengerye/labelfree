@@ -41,7 +41,7 @@ def parse_arguments(argv):
 
 
 def main(args):
-    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    device = params.device
 
     embedding_net = HeightNet()
     net = ConstNet(embedding_net)

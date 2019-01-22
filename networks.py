@@ -77,7 +77,8 @@ class ConstNet(nn.Module):
         self.a, self.A, self.proj_mat = self.a.astype(np.float32), self.A.astype(np.float32), self.proj_mat.astype(np.float32)
         self.const = self.proj_mat @ self.a
 
-        self.proj_mat, self.const = torch.from_numpy(self.proj_mat), torch.from_numpy(self.const).view(-1, 1)
+        self.proj_mat, self.const = torch.from_numpy(self.proj_mat).to(params.device), \
+                                    torch.from_numpy(self.const).view(-1, 1).to(params.device)
 
     def forward(self, frames):
         """frames: frame_per_traj x C x W x H """
